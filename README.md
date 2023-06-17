@@ -1,1 +1,1 @@
-Progressing my backend journey using Node n Express
+Progressing my backend journey using Node n Express JS
