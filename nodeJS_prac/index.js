@@ -1,5 +1,8 @@
 const { isUtf8 } = require("buffer");
 const fs = require("fs");
+const http = require("http");
+const path = require("path");
+const url = require("url");
 
 // This is Blocking/Synchronous way
 // const textIn = fs.readFileSync("./txt/input.txt", "utf8");
@@ -31,3 +34,21 @@ const fs = require("fs");
 //   });
 // });
 // console.log("Reading this file...");
+
+//-------
+//SREVER
+const server = http.createServer((req, res) => {
+  const pathName = req.url;
+
+  if (pathName === "/" || pathName === "overview") {
+    res.end("This is the overview");
+  } else if (pathName == "/product") {
+    res.end("This is the product page");
+  } else {
+    res.end("Page not found");
+  }
+});
+
+server.listen(3000, () => {
+  console.log("Listening to requests on prt 3000");
+});
