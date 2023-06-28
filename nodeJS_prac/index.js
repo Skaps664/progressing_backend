@@ -3,6 +3,7 @@ const fs = require("fs");
 const http = require("http");
 const path = require("path");
 const url = require("url");
+const replaceTemplate = require("./modules/replaceTemplate");
 
 // This is Blocking/Synchronous way
 // const textIn = fs.readFileSync("./txt/input.txt", "utf8");
@@ -61,7 +62,12 @@ const server = http.createServer((req, res) => {
   //overview page
   if (pathName === "/" || pathName === "overview") {
     res.writeHead(200, { "Content-type": "text/html" });
-    res.end(tempOverview);
+
+    const cardsHtml = dataObj
+      .map((el) => replaceTemplate(tempCard, el))
+      .join("");
+    const output = tempOverview.replace("{%PRODUCT_CARDS%}", cardsHtml);
+    res.end(output);
   }
 
   //product page
