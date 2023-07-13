@@ -1,14 +1,19 @@
 const { json } = require('express');
 const express = require('express');
 const fs = require('fs');
+const morgan = require('morgan');
 
 const app = express();
+
+//Middleware
 app.use(express.json());
+app.use(morgan('dev'));
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+//Route handle
 const getAllTours = (req, res) => {
   res.status(200).json({ status: 'success', data: { tours } });
 };
@@ -66,23 +71,31 @@ const deleteTour = (req, res) => {
     res.status(204).json({ status: 'success', data: null });
   }
 };
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This rote is not defined yet',
+  });
+};
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This ro te is not defined yet',
+  });
+};
 
-// app.get('/api/v1/tours', getAllTours);
-// app.post('/api/v1/tours', postTour);
-// app.get('/api/v1/tours/:id', getTourByID);
-// app.patch('/api/v1/tours/:id', updateTour);
-// app.delete('/api/v1/tours/:id', deleteTour);
+//routes
 
-app.route('/api/v1/tours').get(getAllTours).post(postTour);
-app
-  .route('api/v1/tours/:id')
-  .get(getTourByID)
-  .patch(updateTour)
-  .delete(deleteTour);
+const tourRouter = express.Router();
+const userRouter = express.Router();
 
-app.use((req, res) => {
-  res.send('<h1>404! Not Found<h1>');
-});
+tourRouter.route('/').get(getAllTours).post(postTour);
+tourRouter.route('/:id').get(getTourByID).patch(updateTour).delete(deleteTour);
+
+userRouter.route('/').get(getAllUsers).post(createUser);
+
+app.use('/api/v1/tours ', tourRouter);
+app.use('/api/v1/users', userRouter);
 
 const port = 3000;
 app.listen(port, () => {
