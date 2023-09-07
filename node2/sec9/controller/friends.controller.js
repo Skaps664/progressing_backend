@@ -1,7 +1,8 @@
 const friendModel = require("../models/friends.model");
+const path = require("path");
 
 function getFriends(req, res) {
-  res.json(friendModel);
+  res.senFile(path.join(__dirname, "..", "public", "skimountian.jpg"));
 }
 
 function getFriend(req, res) {
