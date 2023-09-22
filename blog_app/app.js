@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
+import router from "./routes/user-routes.js";
 
 const app = express();
 const port = 3000;
 
+app.use("api/users, router  ");
 mongoose
   .connect(
     "mongodb+srv://admin:admin@cluster0.6haoave.mongodb.net/Blog?retryWrites=true&w=majority"
