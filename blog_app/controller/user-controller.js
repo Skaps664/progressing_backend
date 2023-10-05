@@ -1,4 +1,4 @@
-import user from "../model/user";
+import user from "../model/user.js";
 
 const getAllUser = async (req, res, next) => {
   let users;
@@ -15,4 +15,4 @@ const getAllUser = async (req, res, next) => {
   return res.status(200).json({ users });
 };
 
-export default getAllUser;
+export { getAllUser };
