@@ -1,12 +1,11 @@
-const { name } = require("ejs");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1/27017/testy");
+mongoose.connect("mongodb://localhost:27017/testy");
 
 const userSchema = mongoose.Schema({
   username: String,
-  name: String,
+  Fname: String,
   age: Number,
 });
 
-module.export = mongoose.model("userModel", userSchema);
+module.exports = mongoose.model("users", userSchema);
