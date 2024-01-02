@@ -22,7 +22,6 @@ app.use(
     secret: "thisisasecret",
   })
 );
-app.use(flash);
 
 app.use(logger("dev"));
 app.use(express.json());
