@@ -12,7 +12,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  posts: [],
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "postModel",
+    },
+  ],
   dp: String, // Assuming dp is a link to the user's display picture
   email: {
     type: String,

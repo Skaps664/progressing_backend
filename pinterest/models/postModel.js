@@ -13,6 +13,10 @@ const postSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "userModel",
+  },
 });
 
 module.exports = mongoose.model("postModel", postSchema);
