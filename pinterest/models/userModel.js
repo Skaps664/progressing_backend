@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const plm = require("passport-local-mongoose");
+
 mongoose.connect("mongodb://localhost:27017/pinterestApp");
 
 const userSchema = new mongoose.Schema({
@@ -27,4 +29,5 @@ const userSchema = new mongoose.Schema({
   fullName: String,
 });
 
+userSchema.plugin(plm);
 module.exports = mongoose.model("userModel", userSchema);
