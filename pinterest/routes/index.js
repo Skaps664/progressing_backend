@@ -23,11 +23,6 @@ router.get("/createuser", async function (req, res) {
 router.get("/createpost", async function (req, res) {
   var createdPost = await postModel.create({
     postText: "This is post",
-
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "userModel",
-    },
   });
   res.send(createdPost);
 });
